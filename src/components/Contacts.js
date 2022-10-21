@@ -2,7 +2,6 @@ import { useState } from "react";
 import Contact from "./Contact";
 
 function getContacts (){
-
     const startContacts =  [{
         firstName: "Барней",
         lastName: "Стинсовський",
@@ -45,15 +44,10 @@ function getContacts (){
     };
      
     const handleSearchChange = (value) => {
-        if(!value){
-            setContacts(startContacts);
-            
-        } else {
-             const filtredContacts = contacts.filter((contact) => contact.firstName.toLowerCase().includes(value.toLowerCase()) || contact.lastName.toLowerCase().includes(value.toLowerCase()) || contact.phone.includes(value))
+        const filtredContacts = startContacts.filter((contact) => contact.firstName.toLowerCase().includes(value.toLowerCase()) || contact.lastName.toLowerCase().includes(value.toLowerCase()) || contact.phone.includes(value))
         setContacts(() => {
             return filtredContacts;
-        });      
-        };      
+        });       
     };
 
     return (
@@ -61,8 +55,8 @@ function getContacts (){
             <h2>Контакти</h2>
             <input
             type="text"
-            placeholder="⌕ Пошук"
-             onChange={(e) => handleSearchChange(e.target.value)}
+            placeholder="⌕ Пошук"          
+            onChange={(e) => handleSearchChange(e.target.value)}
             />
             {render(contacts)}
         </div>        
